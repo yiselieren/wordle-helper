@@ -1,0 +1,20 @@
+This is a small and simple helper utility which helps us to
+solve the "wordle" puzzle (see http://nytimes.com/games/wordle/
+for details).
+
+Thanks for the https://github.com/dwyl/english-words.git
+repository for English words database, I just used the words_alpha.txt
+file from the repository.
+
+With this helper you can specify "not in a word" letters (gray
+in original game), in word but not in place letters (yellow
+in the original game) and "in place" letters (green in the
+original game). And then the utility prints the list of
+words which match the specified pattern.
+
+Note 1: The word length is flexible and may be specified
+via command line switches. Of course the default is 5.
+Use "-h" command line switch for more details.
+
+Note 2: This is my first Rust experience, so I'm
+open for constructive criticism.
