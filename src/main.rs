@@ -284,23 +284,27 @@ fn main() {
         }
 
         let amount = show_lines.len();
-        print!("{} results total. Show ? [n]: ", amount);
-        std::io::stdout().flush().unwrap();
-        reply.clear();
-        io::stdin()
-            .read_line(&mut reply)
-            .expect("Failed to read line");
-        trim_newline(&mut reply);
-        if reply.is_empty() {
-            continue;
-        }
-        if reply.starts_with('y') {
-            if amount < small_amount {
-                // Just print
-                for s in show_lines {
-                    println!("  {}", s);
-                }
-            } else {
+        if amount < 1 {
+            println!("--\nNo mathing words found!");
+        } else if amount < small_amount {
+            // Just print
+            println!("--");
+            for s in show_lines {
+                println!("  {}", s);
+            }
+            println!("--");
+        } else {
+            print!("{} results total. Show ? [n]: ", amount);
+            std::io::stdout().flush().unwrap();
+            reply.clear();
+            io::stdin()
+                .read_line(&mut reply)
+                .expect("Failed to read line");
+            trim_newline(&mut reply);
+            if reply.is_empty() {
+                continue;
+            }
+            if reply.starts_with('y') {
                 // Show with less
                 let mut less_process = Command::new("less")
                     .stdin(Stdio::piped())
@@ -314,7 +318,6 @@ fn main() {
                         .write_all(format!("{}\r\n", s).as_bytes())
                         .expect("Can't write to \"less\" process");
                 }
-                //less_stdin.close();
                 less_process
                     .wait()
                     .expect("Can't wait for \"less\" process");
