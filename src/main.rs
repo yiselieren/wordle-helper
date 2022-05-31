@@ -137,7 +137,7 @@ fn enter_uniq_string_multi_pair(n: &str, wlen: usize, s: Vec<String>) -> Vec<Str
             }
         }
         print!(
-            "  Enter {} characters (in a NUMBER CHAR fomat), <Enter> if finished: ",
+            "  Enter {} characters (in a NUMBER CHARS fomat), <Enter> if finished: ",
             &n
         );
         std::io::stdout().flush().unwrap();
@@ -151,7 +151,7 @@ fn enter_uniq_string_multi_pair(n: &str, wlen: usize, s: Vec<String>) -> Vec<Str
         }
         let fields: Vec<&str> = reply.split(' ').collect();
         if fields.len() != 2 {
-            println!("Invalid input, should be NUMBER CHARACTER");
+            println!("Invalid input, should be NUMBER CHARACTERS");
             continue;
         }
         let n: usize = match fields[0].parse() {
